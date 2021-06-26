@@ -22,8 +22,8 @@
     </div>
 
     <div class="tools-list__item-tags">
-      <span v-for="tag in tool.tags" :key="tag">
-        {{ tag }}
+      <span v-for="{ name } in tool.tags" :key="name">
+        {{ name }}
       </span>
     </div>
   </div>
@@ -38,9 +38,6 @@ export default {
     tool: {
       type: Tool,
       required: true,
-      validator({ tags }) {
-        return tags.every((tag) => tag instanceof Tool);
-      },
     },
   },
 };
