@@ -10,7 +10,7 @@
       <div class="container">
         <TaskBar />
 
-        <ToolsList />
+        <ToolsList :items="tools" />
       </div>
     </main>
   </div>
@@ -18,6 +18,7 @@
 
 <script>
 import '@/assets/scss/global.scss';
+import Tool from '@/models/Tool';
 import TaskBar from '@/components/TaskBar.vue';
 import ToolsList from '@/components/ToolsList.vue';
 
@@ -26,6 +27,18 @@ export default {
   components: {
     TaskBar,
     ToolsList,
+  },
+  data() {
+    return {
+      tools: [
+        new Tool({
+          name: 'Jest',
+          link: 'https://jestjs.io/',
+          description: 'Poderoso Framework de Testes em JavaScript com um foco na simplicidade',
+          tags: [],
+        }),
+      ],
+    };
   },
 };
 </script>

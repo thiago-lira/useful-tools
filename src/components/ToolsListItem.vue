@@ -2,8 +2,8 @@
   <div class="tools-list__item">
     <div class="flex">
       <div class="tools-list__item-title">
-        <a href="#">
-          Webpack
+        <a :href="tool.link">
+          {{ tool.name }}
         </a>
       </div>
 
@@ -17,30 +17,31 @@
 
     <div class="tools-list__item-description">
       <p>
-        Elit quam nemo praesentium nisi cumque. Officia fuga corporis rem odio officia
-        quaerat saepe. Quod deleniti quam quas odio assumenda Esse deserunt nisi fuga esse
-        odio laboriosam accusantium, tempora quisquam?
+        {{ tool.description }}
       </p>
     </div>
 
     <div class="tools-list__item-tags">
-      <span>
-        javascript
-      </span>
-
-      <span>
-        bundler
-      </span>
-
-      <span>
-        tooling
+      <span v-for="tag in tool.tags" :key="tag">
+        {{ tag }}
       </span>
     </div>
   </div>
 </template>
 
 <script>
+import Tool from '@/models/Tool';
+
 export default {
   name: 'ToolsListItem',
+  props: {
+    tool: {
+      type: Tool,
+      required: true,
+      validator({ tags }) {
+        return tags.every((tag) => tag instanceof Tool);
+      },
+    },
+  },
 };
 </script>

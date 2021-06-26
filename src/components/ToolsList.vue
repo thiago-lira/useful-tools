@@ -1,8 +1,8 @@
 <template>
   <section class="tools-list">
-    <ul>
-      <ToolsListItem />
-    </ul>
+    <div v-for="tool in items" :key="tool.name">
+      <ToolsListItem :tool="tool" />
+    </div>
   </section>
 </template>
 
@@ -13,6 +13,12 @@ export default {
   name: 'ToolsList',
   components: {
     ToolsListItem,
+  },
+  props: {
+    items: {
+      type: Array,
+      required: true,
+    },
   },
 };
 </script>
