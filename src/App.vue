@@ -1,28 +1,89 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <header>
+      <h1>
+        Useful Tool
+      </h1>
+    </header>
+
+    <main>
+      <section class="task-bar">
+        <div class="task-bar__search">
+          <input type="text">
+          <label>
+            <input type="checkbox">
+            buscar apenas por tags
+          </label>
+        </div>
+        <div class="task-bar__add-tool">
+          <button>
+            Adicionar
+          </button>
+        </div>
+      </section>
+
+      <section class="tools-list">
+        <ul>
+          <li class="tools-list__item">
+            <a href="#">
+              Webpack
+            </a>
+
+            <p>
+              Elit quam nemo praesentium nisi cumque. Officia fuga corporis rem odio officia quaerat
+              saepe. Quod deleniti quam quas odio assumenda Esse deserunt nisi fuga esse odio
+              laboriosam accusantium, tempora quisquam?
+            </p>
+
+            <div class="tools-list__item-tags">
+              <span>
+                javascript
+              </span>
+
+              <span>
+                bundler
+              </span>
+
+              <span>
+                tooling
+              </span>
+            </div>
+          </li>
+          <li class="tools-list__item">
+            <a href="#">
+              Webpack
+            </a>
+
+            <p>
+              Elit quam nemo praesentium nisi cumque. Officia fuga corporis rem odio officia quaerat
+              saepe. Quod deleniti quam quas odio assumenda Esse deserunt nisi fuga esse odio
+              laboriosam accusantium, tempora quisquam?
+            </p>
+
+            <div class="tools-list__item-tags">
+              <span>
+                javascript
+              </span>
+
+              <span>
+                bundler
+              </span>
+
+              <span>
+                tooling
+              </span>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </main>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
+import '@/assets/scss/global.scss';
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld,
-  },
 };
 </script>
-
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
