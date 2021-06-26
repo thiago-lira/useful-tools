@@ -1,28 +1,64 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <header>
+      <h1>
+        Useful Tool
+      </h1>
+    </header>
+
+    <main>
+      <div class="container">
+        <TaskBar />
+
+        <ToolsList :items="tools" />
+      </div>
+    </main>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
+import '@/assets/scss/global.scss';
+import Tool from '@/models/Tool';
+import TaskBar from '@/components/TaskBar.vue';
+import ToolsList from '@/components/ToolsList.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld,
+    TaskBar,
+    ToolsList,
+  },
+  data() {
+    return {
+      tools: [
+        new Tool({
+          name: 'Jest',
+          link: 'https://jestjs.io/',
+          description: 'Poderoso Framework de Testes em JavaScript com um foco na simplicidade',
+          tags: [],
+        }),
+      ],
+    };
   },
 };
 </script>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+<style lang="scss" scoped>
+header {
+  padding: 15px 0;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+}
+
+.container {
+  margin: 0 15px;
+
+  @media (max-width: 375px) {
+    width: 375px;
+  }
+
+  @media (min-width: 540px) {
+    margin: auto;
+    width: 540px;
+  }
 }
 </style>
