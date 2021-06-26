@@ -42,3 +42,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.tools-list__item {
+  width: 100%;
+}
+</style>

@@ -1,6 +1,10 @@
 <template>
-  <div class="modal">
-    <div class="modal__content">
+  <div
+    v-if="visible"
+    @click="handleBgClick"
+    class="modal"
+  >
+    <div @click="handleContentClick" class="modal__content">
       <slot />
     </div>
   </div>
@@ -9,6 +13,20 @@
 <script>
 export default {
   name: 'Modal',
+  props: {
+    visible: {
+      type: Boolean,
+      required: true,
+    },
+  },
+  methods: {
+    handleBgClick() {
+      this.$emit('update:visible', false);
+    },
+    handleContentClick(event) {
+      event.stopPropagation();
+    },
+  },
 };
 </script>
 
