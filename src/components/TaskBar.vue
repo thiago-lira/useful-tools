@@ -10,7 +10,7 @@
     </div>
 
     <div class="task-bar__add-tool">
-      <button @click="handleAddClick">
+      <button @click="handleAddClick" data-cy="btn-add-tool">
         <span class="task-bar--add-icon">
           +
         </span>

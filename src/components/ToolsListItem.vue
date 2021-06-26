@@ -1,7 +1,7 @@
 <template>
-  <div class="tools-list__item">
+  <div class="tools-list__item" data-cy="tool-item">
     <div class="flex">
-      <div class="tools-list__item-title">
+      <div class="tools-list__item-title" data-cy="tool-name">
         <a :href="tool.link">
           {{ tool.name }}
         </a>
@@ -15,13 +15,13 @@
       </div>
     </div>
 
-    <div class="tools-list__item-description">
+    <div class="tools-list__item-description" data-cy="tool-description">
       <p>
         {{ tool.description }}
       </p>
     </div>
 
-    <div class="tools-list__item-tags">
+    <div class="tools-list__item-tags" data-cy="tool-tags">
       <span v-for="{ name } in tool.tags" :key="name">
         {{ name }}
       </span>

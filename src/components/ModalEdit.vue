@@ -1,5 +1,8 @@
 <template>
-  <Modal :visible.sync="isModalVisible">
+  <Modal
+    :visible.sync="isModalVisible"
+    data-cy="modal-edit"
+  >
     <InputForm label="Name" v-model="inputs.name" />
 
     <InputForm label="Link" v-model="inputs.link" />
@@ -65,6 +68,7 @@ export default {
   },
   methods: {
     handleClick() {
+      this.isModalVisible = false;
       this.$emit('submit', this.inputs);
     },
   },
