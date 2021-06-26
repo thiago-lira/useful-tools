@@ -10,7 +10,7 @@
     </div>
 
     <div class="task-bar__add-tool">
-      <button>
+      <button @click="handleAddClick">
         <span class="task-bar--add-icon">
           +
         </span>
@@ -26,6 +26,11 @@
 <script>
 export default {
   name: 'TaskBar',
+  methods: {
+    handleAddClick() {
+      this.$emit('addClick');
+    },
+  },
 };
 </script>
 

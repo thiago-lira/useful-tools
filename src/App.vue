@@ -7,8 +7,12 @@
     </header>
 
     <main>
+      <Modal>
+        Editar
+      </Modal>
+
       <div class="container">
-        <TaskBar />
+        <TaskBar @addClick="handleAddClick" />
 
         <ToolsList :items="tools" />
       </div>
@@ -19,6 +23,7 @@
 <script>
 import '@/assets/scss/global.scss';
 import Tool from '@/models/Tool';
+import Modal from '@/components/Modal.vue';
 import TaskBar from '@/components/TaskBar.vue';
 import ToolsList from '@/components/ToolsList.vue';
 
@@ -27,6 +32,7 @@ export default {
   components: {
     TaskBar,
     ToolsList,
+    Modal,
   },
   data() {
     return {
@@ -39,6 +45,10 @@ export default {
         }),
       ],
     };
+  },
+  methods: {
+    handleAddClick() {
+    },
   },
 };
 </script>
