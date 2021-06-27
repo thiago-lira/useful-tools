@@ -45,6 +45,7 @@ export default {
   },
   data() {
     return {
+      toolToDelete: null,
       modals: {
         isEditVisible: false,
         isDeleteVisible: false,
@@ -71,15 +72,17 @@ export default {
       this.modals.isEditVisible = true;
     },
     handleDeleteTool(tool) {
+      this.toolToDelete = tool;
+      this.modals.isDeleteVisible = true;
+    },
+    handleConfirm() {
+      const tool = this.toolToDelete;
       const toolIndex = this.tools.findIndex((toolItem) => toolItem === tool);
 
       if (toolIndex === -1) {
         return;
       }
 
-      this.modals.isDeleteVisible = true;
-    },
-    handleConfirm() {
       this.tools.splice(toolIndex, 1);
     },
   },
