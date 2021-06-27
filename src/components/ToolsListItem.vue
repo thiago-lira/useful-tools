@@ -8,7 +8,7 @@
       </div>
 
       <div class="tools-list__item-delete text-right">
-        <button @click="handleDelete" class="link">
+        <button @click="handleDelete" class="link" data-cy="tool-remove">
           &times;
           remover
         </button>

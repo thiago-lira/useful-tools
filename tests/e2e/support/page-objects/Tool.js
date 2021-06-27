@@ -27,6 +27,56 @@ class Tool {
       .type(tags);
   }
 
+  static createTask({
+    name, link, description, tags,
+  }) {
+    Tool.openModalEdit();
+
+    ToolElements
+      .getModalEdit()
+      .should('to.exist');
+
+    Tool.setEditData({
+      name,
+      link,
+      description,
+      tags,
+    });
+
+    Tool.saveTool();
+
+    ToolElements
+      .getModalEdit()
+      .should('to.not.exist');
+
+    ToolElements
+      .getToolsList()
+      .should('have.length', 1);
+
+    ToolElements
+      .getNthToolItemName(1)
+      .should('to.contain', name)
+      .should('have.attr', 'href', link);
+
+    ToolElements
+      .getNthToolItemDescription(1)
+      .should('to.contain', description);
+
+    ToolElements
+      .getNthToolItemTag(1)
+      .contains('span', tags);
+  }
+
+  static deleteNthTool(nth) {
+    ToolElements
+      .getNthToolItemRemove(nth)
+      .click();
+
+    ToolElements
+      .getModalDeleteConfirmButton()
+      .click();
+  }
+
   static saveTool() {
     return ToolElements
       .getOkButton()

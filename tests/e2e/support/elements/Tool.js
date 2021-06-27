@@ -21,6 +21,10 @@ class Tool {
     return cy.get('[data-cy=tool-item');
   }
 
+  static getToolItem() {
+    return cy.get('[data-cy=tool-item]');
+  }
+
   static getNthToolItemName(nth) {
     return cy
       .get('[data-cy=tool-name] a')
@@ -43,6 +47,16 @@ class Tool {
     return cy
       .get('[data-cy=modal-edit] textarea')
       .eq(nth - 1);
+  }
+
+  static getNthToolItemRemove(nth) {
+    return cy
+      .get('[data-cy=tool-remove]')
+      .eq(nth - 1);
+  }
+
+  static getModalDeleteConfirmButton() {
+    return cy.get('[data-jest=btn-confirm]').first();
   }
 }
 
