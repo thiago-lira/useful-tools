@@ -44,27 +44,6 @@ class Tool {
     });
 
     Tool.saveTool();
-
-    ToolElements
-      .getModalEdit()
-      .should('to.not.exist');
-
-    ToolElements
-      .getToolsList()
-      .should('have.length', 1);
-
-    ToolElements
-      .getNthToolItemName(1)
-      .should('to.contain', name)
-      .should('have.attr', 'href', link);
-
-    ToolElements
-      .getNthToolItemDescription(1)
-      .should('to.contain', description);
-
-    ToolElements
-      .getNthToolItemTag(1)
-      .contains('span', tags);
   }
 
   static deleteNthTool(nth) {
