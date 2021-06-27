@@ -9,7 +9,7 @@ describe('Task bar', () => {
     const link = 'https://cypress.io/';
     const description = 'A famous E2E testing tool';
     const tags = 'test';
-    Tool.createTask({
+    Tool.createTool({
       name,
       link,
       description,

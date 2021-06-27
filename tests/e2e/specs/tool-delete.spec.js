@@ -5,7 +5,7 @@ describe('Tool item', () => {
   it('should have a button to delete it', () => {
     cy.visit('/');
 
-    Tool.createTask({
+    Tool.createTool({
       name: 'Cypress',
       link: 'https://cypress.io/',
       description: 'A famous E2E testing tool',

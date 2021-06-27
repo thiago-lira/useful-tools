@@ -27,7 +27,7 @@ class Tool {
       .type(tags);
   }
 
-  static createTask({
+  static createTool({
     name, link, description, tags,
   }) {
     Tool.openModalEdit();
