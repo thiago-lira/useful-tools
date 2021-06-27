@@ -15,7 +15,7 @@
       <div class="container">
         <TaskBar @addClick="handleAddClick" />
 
-        <ToolsList :items="tools" />
+        <ToolsList @delete="handleDeleteTool" :items="tools" />
       </div>
     </main>
   </div>
@@ -61,6 +61,15 @@ export default {
     },
     handleAddClick() {
       this.modals.isEditVisible = true;
+    },
+    handleDeleteTool(tool) {
+      const toolIndex = this.tools.findIndex((toolItem) => toolItem === tool);
+
+      if (toolIndex === -1) {
+        return;
+      }
+
+      this.tools.splice(toolIndex, 1);
     },
   },
 };
