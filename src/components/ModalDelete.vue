@@ -6,15 +6,16 @@
       </div>
       <p>
       </p>
-      <div class="modal-delete__footer">
+      <div class="modal-delete__footer text-right">
         <button
           @click="handleConfirmClick"
           data-jest="btn-confirm"
+          class="btn-success"
         >
           Confirmar
         </button>
 
-        <button @click="handleCancelClick">
+        <button @click="handleCancelClick" class="btn-danger">
           Cancelar
         </button>
       </div>
@@ -60,3 +61,17 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.modal-delete {
+  button {
+    margin-left: 15px;
+  }
+
+  &__body {
+    margin: 15px 0;
+    border-bottom: 1px solid #999;
+    padding: 15px 0;
+  }
+}
+</style>
