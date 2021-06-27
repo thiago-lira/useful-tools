@@ -7,8 +7,13 @@
     </header>
 
     <main>
+      <ModalEdit
+        :visible.sync="modals.isEditVisible"
+        @submit="handleSubmitEdit"
+      />
+
       <div class="container">
-        <TaskBar />
+        <TaskBar @addClick="handleAddClick" />
 
         <ToolsList :items="tools" />
       </div>
@@ -19,6 +24,8 @@
 <script>
 import '@/assets/scss/global.scss';
 import Tool from '@/models/Tool';
+import Tag from '@/models/Tag';
+import ModalEdit from '@/components/ModalEdit.vue';
 import TaskBar from '@/components/TaskBar.vue';
 import ToolsList from '@/components/ToolsList.vue';
 
@@ -27,18 +34,34 @@ export default {
   components: {
     TaskBar,
     ToolsList,
+    ModalEdit,
   },
   data() {
     return {
+      modals: {
+        isEditVisible: false,
+      },
       tools: [
-        new Tool({
-          name: 'Jest',
-          link: 'https://jestjs.io/',
-          description: 'Poderoso Framework de Testes em JavaScript com um foco na simplicidade',
-          tags: [],
-        }),
       ],
     };
+  },
+  methods: {
+    createTool({
+      name, link, description, tags,
+    }) {
+      const tagsModel = tags.split(',').map((tagName) => new Tag(tagName));
+      const tool = new Tool({
+        name, link, description, tags: tagsModel,
+      });
+
+      this.tools.push(tool);
+    },
+    handleSubmitEdit(inputs) {
+      this.createTool(inputs);
+    },
+    handleAddClick() {
+      this.modals.isEditVisible = true;
+    },
   },
 };
 </script>
