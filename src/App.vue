@@ -12,6 +12,11 @@
         @submit="handleSubmitEdit"
       />
 
+      <ModalDelete
+        @confirm="handleConfirm"
+        :visible.sync="modals.isDeleteVisible"
+      />
+
       <div class="container">
         <TaskBar @addClick="handleAddClick" />
 
@@ -26,6 +31,7 @@ import '@/assets/scss/global.scss';
 import Tool from '@/models/Tool';
 import Tag from '@/models/Tag';
 import ModalEdit from '@/components/ModalEdit.vue';
+import ModalDelete from '@/components/ModalDelete.vue';
 import TaskBar from '@/components/TaskBar.vue';
 import ToolsList from '@/components/ToolsList.vue';
 
@@ -35,11 +41,13 @@ export default {
     TaskBar,
     ToolsList,
     ModalEdit,
+    ModalDelete,
   },
   data() {
     return {
       modals: {
         isEditVisible: false,
+        isDeleteVisible: false,
       },
       tools: [
       ],
@@ -69,6 +77,9 @@ export default {
         return;
       }
 
+      this.modals.isDeleteVisible = true;
+    },
+    handleConfirm() {
       this.tools.splice(toolIndex, 1);
     },
   },
