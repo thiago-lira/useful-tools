@@ -1,48 +1,48 @@
+import Tool from '../support/page-objects/Tool';
+import ToolElements from '../support/elements/Tool';
+
 describe('Task bar', () => {
   it('permits to add a tool', () => {
     cy.visit('/');
 
-    cy.get('[data-cy=btn-add-tool]')
-      .click();
+    Tool.openModalEdit();
 
-    cy.get('[data-cy=modal-edit]')
+    ToolElements
+      .getModalEdit()
       .should('to.exist');
 
-    cy.get('[data-cy=modal-edit] input')
-      .as('inputs');
+    const name = 'Cypress';
+    const link = 'https://cypress.io/';
+    const description = 'A famous E2E testing tool';
+    const tags = 'test';
+    Tool.setEditData({
+      name,
+      link,
+      description,
+      tags,
+    });
 
-    cy.get('@inputs')
-      .first()
-      .type('Cypress');
+    Tool.saveTool();
 
-    cy.get('@inputs')
-      .eq(1)
-      .type('http://cypress.io');
-
-    cy.get('[data-cy=modal-edit] textarea')
-      .type('A famous E2E testing tool');
-
-    cy.get('@inputs')
-      .eq(2)
-      .type('test');
-
-    cy.get('[data-cy=modal-edit] button')
-      .click();
-
-    cy.get('[data-cy=modal-edit]')
+    ToolElements
+      .getModalEdit()
       .should('to.not.exist');
 
-    cy.get('[data-cy=tool-item')
+    ToolElements
+      .getToolsList()
       .should('have.length', 1);
 
-    cy.get('[data-cy=tool-name] a')
-      .should('to.contain', 'Cypress')
-      .should('have.attr', 'href', 'http://cypress.io');
+    ToolElements
+      .getNthToolItemName(1)
+      .should('to.contain', name)
+      .should('have.attr', 'href', link);
 
-    cy.get('[data-cy=tool-description]')
-      .should('to.contain', 'A famous E2E testing tool');
+    ToolElements
+      .getNthToolItemDescription(1)
+      .should('to.contain', description);
 
-    cy.get('[data-cy=tool-tags]')
-      .contains('span', 'test');
+    ToolElements
+      .getNthToolItemTag(1)
+      .contains('span', tags);
   });
 });
