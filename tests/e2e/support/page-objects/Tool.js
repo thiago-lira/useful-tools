@@ -27,6 +27,35 @@ class Tool {
       .type(tags);
   }
 
+  static createTool({
+    name, link, description, tags,
+  }) {
+    Tool.openModalEdit();
+
+    ToolElements
+      .getModalEdit()
+      .should('to.exist');
+
+    Tool.setEditData({
+      name,
+      link,
+      description,
+      tags,
+    });
+
+    Tool.saveTool();
+  }
+
+  static deleteNthTool(nth) {
+    ToolElements
+      .getNthToolItemRemove(nth)
+      .click();
+
+    ToolElements
+      .getModalDeleteConfirmButton()
+      .click();
+  }
+
   static saveTool() {
     return ToolElements
       .getOkButton()

@@ -39,6 +39,25 @@ button {
   cursor: pointer;
   padding: 5px;
 
+  &.btn-success {
+    background: #090;
+    border-color: #0f0;
+    color: #fff;
+
+    &:hover {
+      background: #060;
+    }
+  }
+
+  &.btn-danger {
+    background: #900;
+    border-color: #f00;
+    color: #fff;
+
+    &:hover {
+      background: #600;
+    }
+  }
   &[disabled] {
     border: 1px solid #600;
     cursor: not-allowed;

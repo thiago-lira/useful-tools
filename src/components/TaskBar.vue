@@ -1,7 +1,12 @@
 <template>
   <section class="task-bar">
     <div class="task-bar__search">
-      <input type="text" placeholder="Buscar ferramenta">
+      <input
+        type="text"
+        placeholder="Buscar ferramenta"
+        :value="value"
+        @input="$emit('input', $event.target.value)"
+      >
 
       <label>
         <input type="checkbox">
@@ -26,9 +31,18 @@
 <script>
 export default {
   name: 'TaskBar',
+  props: {
+    value: {
+      type: String,
+      default: '',
+    },
+  },
   methods: {
     handleAddClick() {
       this.$emit('addClick');
+    },
+    handleInput({ target: { value } }) {
+      this.$emit('input', value);
     },
   },
 };

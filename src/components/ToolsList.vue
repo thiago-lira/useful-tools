@@ -1,7 +1,7 @@
 <template>
   <section class="tools-list">
     <div v-for="tool in items" :key="tool.name">
-      <ToolsListItem :tool="tool" />
+      <ToolsListItem @delete="handleDelete" :tool="tool" />
     </div>
   </section>
 </template>
@@ -18,6 +18,11 @@ export default {
     items: {
       type: Array,
       required: true,
+    },
+  },
+  methods: {
+    handleDelete(tool) {
+      this.$emit('delete', tool);
     },
   },
 };

@@ -5,24 +5,16 @@ describe('Task bar', () => {
   it('permits to add a tool', () => {
     cy.visit('/');
 
-    Tool.openModalEdit();
-
-    ToolElements
-      .getModalEdit()
-      .should('to.exist');
-
     const name = 'Cypress';
     const link = 'https://cypress.io/';
     const description = 'A famous E2E testing tool';
     const tags = 'test';
-    Tool.setEditData({
+    Tool.createTool({
       name,
       link,
       description,
       tags,
     });
-
-    Tool.saveTool();
 
     ToolElements
       .getModalEdit()

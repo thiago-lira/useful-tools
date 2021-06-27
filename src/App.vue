@@ -12,10 +12,18 @@
         @submit="handleSubmitEdit"
       />
 
-      <div class="container">
-        <TaskBar @addClick="handleAddClick" />
+      <ModalDelete
+        @confirm="handleConfirm"
+        :visible.sync="modals.isDeleteVisible"
+      />
 
-        <ToolsList :items="tools" />
+      <div class="container">
+        <TaskBar
+          @addClick="handleAddClick"
+          v-model="search.term"
+        />
+
+        <ToolsList @delete="handleDeleteTool" :items="toolsList" />
       </div>
     </main>
   </div>
@@ -26,6 +34,7 @@ import '@/assets/scss/global.scss';
 import Tool from '@/models/Tool';
 import Tag from '@/models/Tag';
 import ModalEdit from '@/components/ModalEdit.vue';
+import ModalDelete from '@/components/ModalDelete.vue';
 import TaskBar from '@/components/TaskBar.vue';
 import ToolsList from '@/components/ToolsList.vue';
 
@@ -35,15 +44,34 @@ export default {
     TaskBar,
     ToolsList,
     ModalEdit,
+    ModalDelete,
   },
   data() {
     return {
+      search: {
+        term: '',
+        list: [],
+      },
+      toolToDelete: null,
       modals: {
         isEditVisible: false,
+        isDeleteVisible: false,
       },
       tools: [
       ],
     };
+  },
+  computed: {
+    toolsList() {
+      const { search } = this;
+      const term = search.term.trim().toLowerCase();
+
+      if (term !== '') {
+        return this.tools.filter(({ name }) => name.toLowerCase().search(term) !== -1);
+      }
+
+      return this.tools;
+    },
   },
   methods: {
     createTool({
@@ -61,6 +89,20 @@ export default {
     },
     handleAddClick() {
       this.modals.isEditVisible = true;
+    },
+    handleDeleteTool(tool) {
+      this.toolToDelete = tool;
+      this.modals.isDeleteVisible = true;
+    },
+    handleConfirm() {
+      const tool = this.toolToDelete;
+      const toolIndex = this.tools.findIndex((toolItem) => toolItem === tool);
+
+      if (toolIndex === -1) {
+        return;
+      }
+
+      this.tools.splice(toolIndex, 1);
     },
   },
 };
