@@ -8,7 +8,7 @@
       </div>
 
       <div class="tools-list__item-delete text-right">
-        <button class="link">
+        <button @click="handleDelete" class="link">
           &times;
           remover
         </button>
@@ -38,6 +38,11 @@ export default {
     tool: {
       type: Tool,
       required: true,
+    },
+  },
+  methods: {
+    handleDelete() {
+      this.$emit('delete', this.tool);
     },
   },
 };
