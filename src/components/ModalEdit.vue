@@ -43,12 +43,7 @@ export default {
   data() {
     return {
       isModalVisible: this.visible,
-      inputs: {
-        name: '',
-        link: '',
-        description: '',
-        tags: '',
-      },
+      inputs: this.getInitialInputsState(),
     };
   },
   computed: {
@@ -67,9 +62,18 @@ export default {
     },
   },
   methods: {
+    getInitialInputsState() {
+      return {
+        name: '',
+        link: '',
+        description: '',
+        tags: '',
+      };
+    },
     handleClick() {
       this.isModalVisible = false;
       this.$emit('submit', this.inputs);
+      this.inputs = this.getInitialInputsState();
     },
   },
 };

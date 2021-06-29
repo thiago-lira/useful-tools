@@ -18,9 +18,12 @@
       />
 
       <div class="container">
-        <TaskBar @addClick="handleAddClick" />
+        <TaskBar
+          @addClick="handleAddClick"
+          v-model="search.term"
+        />
 
-        <ToolsList @delete="handleDeleteTool" :items="tools" />
+        <ToolsList @delete="handleDeleteTool" :items="toolsList" />
       </div>
     </main>
   </div>
@@ -45,6 +48,10 @@ export default {
   },
   data() {
     return {
+      search: {
+        term: '',
+        list: [],
+      },
       toolToDelete: null,
       modals: {
         isEditVisible: false,
@@ -53,6 +60,18 @@ export default {
       tools: [
       ],
     };
+  },
+  computed: {
+    toolsList() {
+      const { search } = this;
+      const term = search.term.trim().toLowerCase();
+
+      if (term !== '') {
+        return this.tools.filter(({ name }) => name.toLowerCase().search(term) !== -1);
+      }
+
+      return this.tools;
+    },
   },
   methods: {
     createTool({

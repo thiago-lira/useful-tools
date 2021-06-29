@@ -61,6 +61,12 @@ class Tool {
       .getOkButton()
       .click();
   }
+
+  static search(term) {
+    ToolElements
+      .getSearchInput()
+      .type(term);
+  }
 }
 
 export default Tool;

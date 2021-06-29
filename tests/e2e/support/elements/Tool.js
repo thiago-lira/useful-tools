@@ -58,6 +58,12 @@ class Tool {
   static getModalDeleteConfirmButton() {
     return cy.get('[data-jest=btn-confirm]').first();
   }
+
+  static getSearchInput() {
+    return cy
+      .get('[data-cy=search-input]')
+      .first();
+  }
 }
 
 export default Tool;
