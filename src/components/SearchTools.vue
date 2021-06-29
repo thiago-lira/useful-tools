@@ -5,6 +5,7 @@
       placeholder="Buscar ferramenta"
       :value="value"
       @input="$emit('input', $event.target.value)"
+      data-cy="search-input"
     />
 
     <label>

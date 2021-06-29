@@ -2,9 +2,11 @@ import Tool from '../support/page-objects/Tool';
 import ToolElements from '../support/elements/Tool';
 
 describe('Task bar', () => {
-  it('permits to add a tool', () => {
+  beforeEach(() => {
     cy.visit('/');
+  });
 
+  it('permits to add a tool', () => {
     const name = 'Cypress';
     const link = 'https://cypress.io/';
     const description = 'A famous E2E testing tool';
@@ -36,5 +38,27 @@ describe('Task bar', () => {
     ToolElements
       .getNthToolItemTag(1)
       .contains('span', tags);
+  });
+
+  it.only('has search for tools', () => {
+    Tool.createTool({
+      name: 'Node.js',
+      link: 'https://nodejs.org',
+      description: 'A js runtime based on V8 engine',
+      tags: 'js, node',
+    });
+
+    Tool.createTool({
+      name: 'Vue.js',
+      link: 'https://vuejs.org',
+      description: 'Pure love',
+      tags: 'js, vue',
+    });
+
+    Tool.search('vue.js');
+
+    ToolElements
+      .getNthToolItemName(1)
+      .should('to.contain', 'Vue.js');
   });
 });
