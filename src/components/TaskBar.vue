@@ -1,18 +1,9 @@
 <template>
   <section class="task-bar">
-    <div class="task-bar__search">
-      <input
-        type="text"
-        placeholder="Buscar ferramenta"
-        :value="value"
-        @input="$emit('input', $event.target.value)"
-      >
-
-      <label>
-        <input type="checkbox">
-        apenas tags
-      </label>
-    </div>
+    <SearchTools
+      v-model="searchValue"
+      @input="$emit('input', searchValue)"
+    />
 
     <div class="task-bar__add-tool">
       <button @click="handleAddClick" data-cy="btn-add-tool">
@@ -29,13 +20,23 @@
 </template>
 
 <script>
+import SearchTools from '@/components/SearchTools.vue';
+
 export default {
   name: 'TaskBar',
+  components: {
+    SearchTools,
+  },
   props: {
     value: {
       type: String,
       default: '',
     },
+  },
+  data() {
+    return {
+      searchValue: this.value,
+    };
   },
   methods: {
     handleAddClick() {
