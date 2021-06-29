@@ -40,7 +40,7 @@ describe('Task bar', () => {
       .contains('span', tags);
   });
 
-  it.only('has search for tools', () => {
+  it('has search for tools', () => {
     Tool.createTool({
       name: 'Node.js',
       link: 'https://nodejs.org',
